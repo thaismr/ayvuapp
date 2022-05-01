@@ -1,1 +1,1 @@
--r ayvuSite/requirements/production.txt
+-r ayvuapp/requirements/production.txt
