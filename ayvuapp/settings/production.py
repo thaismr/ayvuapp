@@ -10,7 +10,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
 
-PREPEND_WWW = True
+PREPEND_WWW = os.getenv('PREPEND_WWW', False)
 
 CSRF_COOKIE_SECURE = True
 CSRF_USE_SESSIONS = True
