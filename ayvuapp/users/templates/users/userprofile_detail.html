@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Profile Detail{% endblock %}
+
+{% block content %}
+<p>
+  {{ profile }}
+</p>
+<p>
+  {{ profile.user.ux_enabled }}
+</p>
+<p>
+ {{ profile.first_language }}
+</p>
+<ul>{% for language in profile.speaks.all %}
+<li>{{ language }}</li>
+ {% endfor %}
+</ul>
+{% endblock content %}
