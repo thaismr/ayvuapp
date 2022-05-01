@@ -17,7 +17,6 @@ CSRF_USE_SESSIONS = True
 SESSION_COOKIE_SECURE = True
 # https://docs.djangoproject.com/en/4.0/ref/settings/#csrf-failure-view
 
-INSTALLED_APPS = BASE_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
