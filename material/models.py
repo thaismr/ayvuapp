@@ -49,8 +49,8 @@ class Material(models.Model):
     history = HistoricalRecords()
 
     class Meta:
-        verbose_name = _('material')
-        verbose_name_plural = _('materials')
+        verbose_name = _('resource')
+        verbose_name_plural = _('resources')
         unique_together = ['title', 'publisher', 'language']
 
     def __str__(self):
