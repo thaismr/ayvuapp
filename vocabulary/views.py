@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, ListView
 from django.urls import reverse
 
 from .models import Vocabulary
@@ -20,6 +20,15 @@ class VocabularyCreateView(LoginRequiredMixin, CreateView):
 class VocabularyDetailView(LoginRequiredMixin, DetailView):
     model = Vocabulary
     context_object_name = 'vocabulary'
+
+    def get_queryset(self):
+        """Verify user has access to vocabulary."""
+        return super().get_queryset().select_related(
+            'publisher', 'language').prefetch_related('materials')
+
+
+class VocabularyListView(LoginRequiredMixin, ListView):
+    model = Vocabulary
 
     def get_queryset(self):
         """Verify user has access to vocabulary."""

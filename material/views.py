@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, ListView
 from django.urls import reverse
 
 from .models import Material
@@ -23,6 +23,15 @@ class MaterialCreateView(LoginRequiredMixin, CreateView):
 class MaterialDetailView(LoginRequiredMixin, DetailView):
     model = Material
     context_object_name = 'material'
+
+    def get_queryset(self):
+        """Verify user has access to material."""
+        return super().get_queryset().select_related(
+            'publisher', 'language').prefetch_related('vocabulary')
+
+
+class MaterialListView(LoginRequiredMixin, ListView):
+    model = Material
 
     def get_queryset(self):
         """Verify user has access to material."""

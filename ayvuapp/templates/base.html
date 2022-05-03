@@ -29,6 +29,8 @@
   <div class="container-fluid pb-3">
     <div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
       <div class="bg-light border rounded-3 p-4">
+        <a href="{% url 'material:list' %}" class="w-100 my-2 btn btn-primary">List resources</a>
+        <a href="{% url 'vocabulary:list' %}" class="w-100 my-2 btn btn-primary">List vocabularies</a>
         <a href="{% url 'material:create' %}" class="w-100 my-2 btn btn-primary">Add resource</a>
         <a href="{% url 'vocabulary:create' %}" class="w-100 my-2 btn btn-primary">Add vocabulary</a>
       </div>
