@@ -8,7 +8,8 @@ from .models import Material
 class MaterialCreateView(LoginRequiredMixin, CreateView):
     model = Material
     fields = [
-        'title', 'description', 'url', 'public', 'language', 'level', 'vocabulary'
+        'title', 'description', 'url', 'public', 'language', 'level',
+        'vocabulary'
     ]
 
     def get_success_url(self):

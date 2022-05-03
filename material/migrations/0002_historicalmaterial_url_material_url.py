@@ -13,11 +13,17 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='historicalmaterial',
             name='url',
-            field=models.URLField(blank=True, default=None, null=True, verbose_name='URL'),
+            field=models.URLField(blank=True,
+                                  default=None,
+                                  null=True,
+                                  verbose_name='URL'),
         ),
         migrations.AddField(
             model_name='material',
             name='url',
-            field=models.URLField(blank=True, default=None, null=True, verbose_name='URL'),
+            field=models.URLField(blank=True,
+                                  default=None,
+                                  null=True,
+                                  verbose_name='URL'),
         ),
     ]

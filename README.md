@@ -18,6 +18,11 @@ py manage.py startapp ayvuapp.users ./ayvuapp/users
 yapf -r -i . --style google
 ```
 
+### Pycharm shortcuts
+
+Select all occurrences: Shift + Ctrl + Alt + J 
+Toggle column selection mode: Alt + Shift + Insert
+
 ## Project Roadmap
 
 ### Pre MVP 1.0 (Team prototype)

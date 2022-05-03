@@ -17,7 +17,6 @@ CSRF_USE_SESSIONS = True
 SESSION_COOKIE_SECURE = True
 # https://docs.djangoproject.com/en/4.0/ref/settings/#csrf-failure-view
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  #: On top after security middleware
@@ -59,7 +58,6 @@ LOGGING = {
         },
     },
 }
-
 
 # Heroku settings
 
