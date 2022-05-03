@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('profile/', include('ayvuapp.users.urls')),
-    path('material/', include('material.urls')),
+    path('resource/', include('material.urls')),
     path('vocabulary/', include('vocabulary.urls')),
 ]
 
