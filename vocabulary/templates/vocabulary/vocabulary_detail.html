@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'inner_pg_base.html' %}
 {% load static i18n %}
 
 {% block title %}Vocabulary Detail{% endblock %}
 
-{% block content %}
+{% block inner_content %}
 
 <h4>{{ vocabulary.word }}</h4>
 <p>{% translate "Definition" %}: {{ vocabulary.definition }}</p>
@@ -23,4 +23,4 @@
   {% endfor %}
 </ul>
 
-{% endblock content %}
+{% endblock inner_content %}

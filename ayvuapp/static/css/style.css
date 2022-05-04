@@ -1,5 +1,22 @@
 body {
   font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Comfortaa', cursive;
+  background-color: #8ea4d2;
+  background-color: #f9fbf2;
+  background-color: #7a9e9f;
+  background-color: #b8d8d8;
+  background-color: #eef5db;
+}
+
+.logo, .f-logo, h1, h2, h3, h4, h5, h6, .btn-primary {
+  font-family: 'Comfortaa', cursive;
+  font-weight: 700;
+  color: #49516f;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #8ea4d2;
 }
 
 .select {
@@ -7,4 +24,22 @@ body {
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     background-size: 16px 12px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #f25757;
+    border-color: #f25757;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #fe654f;
+    border-color: #fe654f;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #8ea4d2;
+    border-color: #8ea4d2;
 }
