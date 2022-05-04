@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'inner_pg_base.html' %}
 {% load static i18n %}
 
 {% block title %}Resource Detail{% endblock %}
 
-{% block content %}
+{% block inner_content %}
 
 <h4>{{ material.title }}</h4>
 <p>{{ material.description }}</p>
@@ -21,4 +21,4 @@
 <a href="{% url 'vocabulary:create' %}" class="btn btn-outline-primary">Add vocabulary</a>
 
 
-{% endblock content %}
+{% endblock inner_content %}

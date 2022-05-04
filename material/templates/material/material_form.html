@@ -1,12 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'inner_pg_base.html' %}
 {% load static crispy_forms_tags %}
 
 {% block title %}Add Resource{% endblock %}
 
-{% block content %}
+{% block inner_content %}
 
-<form class="mb-4 rounded-3 mx-auto" style="max-width: 700px;" method="post">
-  <div class="card-header py-3">
+<form class="mb-4 rounded-3 mx-auto" method="post">
+  <div class="card-header bg-light py-3">
     <h4>New resource:</h4>
   </div>
   <div class="card-body p-4">
@@ -14,9 +14,9 @@
       {% csrf_token %}
       {{ form|crispy }}
     </div>
-    <input type="submit" class="w-100 btn btn-lg btn-primary mt-4" value="Save resource" />
+    <input type="submit" class="btn btn-lg btn-primary mt-4" value="Save resource" />
   </div>
 </form>
 
-{% endblock content %}
+{% endblock inner_content %}
 
