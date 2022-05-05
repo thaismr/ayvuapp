@@ -9,6 +9,7 @@ User = get_user_model()
 class UserProfileInline(admin.StackedInline):
     model = UserProfile
     can_delete = False
+    autocomplete_fields = ['speaks']
 
 
 @admin.register(User)
@@ -21,7 +22,6 @@ class UserAdmin(BaseUserAdmin):
 
 @admin.register(ProxyUser)
 class ProxyUserAdmin(admin.ModelAdmin):
-    icon_name = 'person'
     fields = (
         (
             'username',
@@ -37,11 +37,14 @@ class ProxyUserAdmin(admin.ModelAdmin):
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
-    icon_name = 'person'
-    autocomplete_fields = ('user',)
+    search_fields = ('user', 'first_language', 'speaks')
+    autocomplete_fields = ('user', 'speaks')
     list_display = (
         'user',
         'bio',
         'website',
+        'gender',
+        'first_language',
     )
-    list_filter = ('user__is_active', 'user__is_premium', 'user__ux_enabled')
+    list_filter = ('user__is_active', 'user__is_premium', 'user__ux_enabled',
+                   'birth_date', 'gender', 'education', 'marital_status')

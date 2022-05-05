@@ -106,8 +106,6 @@ class LanguageCodes(models.TextChoices):
 
 
 class Language(models.Model):
-    # TODO: Add language code!
-    # name = models.CharField(max_length=50, verbose_name=_("Language"))
     code = models.CharField(
         _('Language'),
         max_length=7,
