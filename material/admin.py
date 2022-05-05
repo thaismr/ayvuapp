@@ -4,5 +4,5 @@ from .models import Material
 
 @admin.register(Material)
 class MaterialAdmin(admin.ModelAdmin):
-    search_fields = ['title', 'language']
-    autocomplete_fields = ['vocabulary']
+    search_fields = ['title']
+    autocomplete_fields = ('vocabulary',)
