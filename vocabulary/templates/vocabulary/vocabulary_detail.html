@@ -5,22 +5,34 @@
 
 {% block inner_content %}
 
-<h4>{{ vocabulary.word }}</h4>
-<p>{% translate "Definition" %}: {{ vocabulary.definition }}</p>
-<p>{{ vocabulary.language }} | {{ vocabulary.get_level_display }}</p>
+<div class="card-header bg-light py-3">
+  <h4>{{ vocabulary.word }}</h4>
+</div>
+<div class="card-body p-4">
 
-<h5>Synonyms</h5>
-<ul>
-  {% for synonym in vocabulary.synonyms.all %}
-  <li><a href="{% url 'vocabulary:detail' synonym.pk %}">{{ synonym }}</a></li>
-  {% endfor %}
-</ul>
+  <p>{{ vocabulary.language }} | {{ vocabulary.get_level_display }}</p>
+  <p>{% translate "Definition" %}: {{ vocabulary.definition }}</p>
 
-<h5>Materials</h5>
-<ul>
-  {% for material in vocabulary.materials.all %}
-  <li><a href="{% url 'material:detail' material.pk %}">{{ material }}</a></li>
-  {% endfor %}
-</ul>
+  <h5 class="mt-5">Synonyms</h5>
+  <ul>
+    {% for synonym in vocabulary.synonyms.all %}
+    <li><a href="{% url 'vocabulary:detail' synonym.pk %}">{{ synonym }}</a></li>
+    {% empty %}
+    <li>Nothing here, add more vocabulary!</li>
+    {% endfor %}
+  </ul>
+
+</div><div class="card-footer p-4">
+  <h5>Resources</h5>
+  <ul>
+    {% for material in vocabulary.materials.all %}
+    <li><a href="{% url 'material:detail' material.pk %}">{{ material }}</a></li>
+    {% empty %}
+    <li>No resource here, add some!</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'material:create' %}" class="btn btn-primary">Add resource</a>
+
+</div>
 
 {% endblock inner_content %}

@@ -32,6 +32,7 @@ class MaterialDetailView(LoginRequiredMixin, DetailView):
 
 class MaterialListView(LoginRequiredMixin, ListView):
     model = Material
+    paginate_by = 15
 
     def get_queryset(self):
         """Verify user has access to material."""

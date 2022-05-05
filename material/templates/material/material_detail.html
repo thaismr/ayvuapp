@@ -5,20 +5,28 @@
 
 {% block inner_content %}
 
-<h4>{{ material.title }}</h4>
-<p>{{ material.description }}</p>
-<p>{% translate "Language" %}: {{ material.language }} | {{ material.get_level_display }}</p>
-{% if material.url %}
-<p>URL: <a href="{{ material.url }}">{{ material.url }}</a></p>
-{% endif %}
+<div class="card-header bg-light py-3">
+  <h4>{{ material.title }}</h4>
+</div>
+<div class="card-body p-4">
 
-<h5>Vocabulary</h5>
-<ul>
-  {% for vocabulary in material.vocabulary.all %}
-  <li><a href="{% url 'vocabulary:detail' vocabulary.pk %}">{{ vocabulary }}</a></li>
-  {% endfor %}
-</ul>
-<a href="{% url 'vocabulary:create' %}" class="btn btn-outline-primary">Add vocabulary</a>
+  <p>{% translate "Language" %}: {{ material.language }} | {{ material.get_level_display }}</p>
+  <p>{{ material.description }}</p>
+  {% if material.url %}
+  <p>URL: <a href="{{ material.url }}" target="_blank">{{ material.url }}</a></p>
+  {% endif %}
 
+</div><div class="card-footer p-4">
+  <h5>Vocabulary</h5>
+  <ul>
+    {% for vocabulary in material.vocabulary.all %}
+    <li><a href="{% url 'vocabulary:detail' vocabulary.pk %}">{{ vocabulary }}</a></li>
+    {% empty %}
+    <li>No vocabulary here, add some!</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'vocabulary:create' %}" class="btn btn-primary">Add vocabulary</a>
+
+</div>
 
 {% endblock inner_content %}
