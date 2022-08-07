@@ -38,7 +38,7 @@ PROJECT_APPS = [
     'ayvuapp.users.apps.UsersConfig',
     'languages.apps.LanguagesConfig',
     'vocabulary.apps.VocabularyConfig',
-    'material.apps.MaterialConfig',
+    'resources.apps.ResourcesConfig',
 ]
 
 INSTALLED_APPS = BASE_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -138,7 +138,7 @@ AUTH_USER_MODEL = "users.User"
 
 LOGOUT_REDIRECT_URL = 'login'
 
-LOGIN_REDIRECT_URL = 'material:create'
+LOGIN_REDIRECT_URL = 'resource:create'
 
 # Django Crispy Forms
 # https://django-crispy-forms.readthedocs.io/en/latest/index.html
