@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import Resource
 
-# Register your models here.
+
+@admin.register(Resource)
+class ResourceAdmin(admin.ModelAdmin):
+    search_fields = ['title']
+    autocomplete_fields = ('vocabulary',)

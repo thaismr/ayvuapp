@@ -29,7 +29,8 @@ class MaterialDetailView(LoginRequiredMixin, DetailView):
         """Verify user has access to material."""
         user_id = self.request.user.pk
         return self.model.objects.select_related(
-            'publisher', 'language').prefetch_related('vocabulary').filter(Q(publisher=user_id) | Q(public=True))
+            'publisher', 'language').prefetch_related('vocabulary').filter(
+                Q(publisher=user_id) | Q(public=True))
 
 
 class MaterialListView(LoginRequiredMixin, ListView):
@@ -40,4 +41,5 @@ class MaterialListView(LoginRequiredMixin, ListView):
         """Verify user has access to material."""
         user_id = self.request.user.pk
         return self.model.objects.select_related(
-            'publisher', 'language').prefetch_related('vocabulary').filter(Q(publisher=user_id) | Q(public=True))
+            'publisher', 'language').prefetch_related('vocabulary').filter(
+                Q(publisher=user_id) | Q(public=True))

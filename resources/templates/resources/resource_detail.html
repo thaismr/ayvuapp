@@ -1,0 +1,32 @@
+{% extends 'inner_pg_base.html' %}
+{% load static i18n %}
+
+{% block title %}Resource Detail{% endblock %}
+
+{% block inner_content %}
+
+<div class="card-header bg-light py-3">
+  <h4>{{ resource.title }}</h4>
+</div>
+<div class="card-body p-4">
+
+  <p>{% translate "Language" %}: {{ resource.language }} | {{ resource.get_level_display }}</p>
+  <p>{{ resource.description }}</p>
+  {% if resource.url %}
+  <p>URL: <a href="{{ resource.url }}" target="_blank">{{ resource.url }}</a></p>
+  {% endif %}
+
+</div><div class="card-footer p-4">
+  <h5>Vocabulary</h5>
+  <ul>
+    {% for vocabulary in resource.vocabulary.all %}
+    <li><a href="{% url 'vocabulary:detail' vocabulary.pk %}">{{ vocabulary }}</a></li>
+    {% empty %}
+    <li>No vocabulary here, add some!</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'vocabulary:create' %}" class="btn btn-primary">Add vocabulary</a>
+
+</div>
+
+{% endblock inner_content %}

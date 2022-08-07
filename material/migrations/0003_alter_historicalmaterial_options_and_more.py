@@ -12,10 +12,17 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='historicalmaterial',
-            options={'get_latest_by': 'history_date', 'ordering': ('-history_date', '-history_id'), 'verbose_name': 'historical resource'},
+            options={
+                'get_latest_by': 'history_date',
+                'ordering': ('-history_date', '-history_id'),
+                'verbose_name': 'historical resource'
+            },
         ),
         migrations.AlterModelOptions(
             name='material',
-            options={'verbose_name': 'resource', 'verbose_name_plural': 'resources'},
+            options={
+                'verbose_name': 'resource',
+                'verbose_name_plural': 'resources'
+            },
         ),
     ]
