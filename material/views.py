@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, DetailView, ListView
+from django.db.models import Q
 from django.urls import reverse
 
 from .models import Material
@@ -26,8 +27,9 @@ class MaterialDetailView(LoginRequiredMixin, DetailView):
 
     def get_queryset(self):
         """Verify user has access to material."""
-        return super().get_queryset().select_related(
-            'publisher', 'language').prefetch_related('vocabulary')
+        user_id = self.request.user.pk
+        return self.model.objects.select_related(
+            'publisher', 'language').prefetch_related('vocabulary').filter(Q(publisher=user_id) | Q(public=True))
 
 
 class MaterialListView(LoginRequiredMixin, ListView):
@@ -36,5 +38,6 @@ class MaterialListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         """Verify user has access to material."""
-        return super().get_queryset().select_related(
-            'publisher', 'language').prefetch_related('vocabulary')
+        user_id = self.request.user.pk
+        return self.model.objects.select_related(
+            'publisher', 'language').prefetch_related('vocabulary').filter(Q(publisher=user_id) | Q(public=True))

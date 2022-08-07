@@ -7,31 +7,31 @@ from simple_history.models import HistoricalRecords
 from languages.models import Language
 from vocabulary.models import Level, Vocabulary
 
-from resources import managers
+from .managers import ResourceManager
 
 
-class Material(models.Model):
+class Resource(models.Model):
     """
-    Model for study materials
+    Model for language learning resources
     """
     title = models.CharField(_('Title'), max_length=250)
     description = models.TextField(_('Description'))
     url = models.URLField(_('URL'), null=True, blank=True, default=None)
     public = models.BooleanField(_('Public'), default=False)
 
-    publisher = models.ForeignKey(
+    owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
         blank=True,
         default=None,
         on_delete=models.SET_NULL,
-        related_name='user_materials',
-        verbose_name=_('Publisher'),
+        related_name='user_resources',
+        verbose_name=_('Owner'),
     )
     language = models.ForeignKey(
         Language,
         on_delete=models.CASCADE,
-        related_name='materials',
+        related_name='resources',
         verbose_name=_('Language')
     )
     level = models.CharField(
@@ -45,18 +45,17 @@ class Material(models.Model):
     vocabulary = models.ManyToManyField(
         Vocabulary,
         blank=True,
-        related_name='materials',
+        related_name='resources',
         verbose_name=_('Vocabulary'),
     )
     history = HistoricalRecords()
 
-    objects = managers.ResourceManager()
+    objects = ResourceManager()
 
     class Meta:
         verbose_name = _('resource')
         verbose_name_plural = _('resources')
-        ordering = ['title', 'publisher', 'language']
-        unique_together = ['title', 'publisher', 'language']
+        unique_together = ['title', 'owner', 'language']
 
     def __str__(self):
         return self.title
