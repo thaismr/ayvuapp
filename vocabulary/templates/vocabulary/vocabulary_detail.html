@@ -25,13 +25,13 @@
 </div><div class="card-footer p-4">
   <h5>Resources</h5>
   <ul>
-    {% for material in vocabulary.materials.all %}
-    <li><a href="{% url 'material:detail' material.pk %}">{{ material }}</a></li>
+    {% for resource in vocabulary.resources.all %}
+    <li><a href="{% url 'resource:detail' resource.pk %}">{{ resource }}</a></li>
     {% empty %}
     <li>No resource here, add some!</li>
     {% endfor %}
   </ul>
-  <a href="{% url 'material:create' %}" class="btn btn-primary">Add resource</a>
+  <a href="{% url 'resource:create' %}" class="btn btn-primary">Add resource</a>
 
 </div>
 

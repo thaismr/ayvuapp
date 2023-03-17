@@ -24,7 +24,7 @@ class VocabularyDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
         """Verify user has access to vocabulary."""
         return super().get_queryset().select_related(
-            'publisher', 'language').prefetch_related('materials')
+            'publisher', 'language').prefetch_related('resources')
 
 
 class VocabularyListView(LoginRequiredMixin, ListView):
@@ -34,4 +34,4 @@ class VocabularyListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         """Verify user has access to vocabulary."""
         return super().get_queryset().select_related(
-            'publisher', 'language').prefetch_related('materials')
+            'publisher', 'language').prefetch_related('resources')
