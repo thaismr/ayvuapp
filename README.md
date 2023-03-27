@@ -49,3 +49,16 @@ Toggle column selection mode: Alt + Shift + Insert
 - [ ] Diversified and gamified activities
 - [ ] Badges and achievements
 - [ ] Resources and Vocabularies provided by project team
+
+
+## Python Useful
+
+### Shell
+
+```shell
+pip freeze
+
+pip install -r requirements.txt --upgrade
+
+py manage.py runserver
+```
