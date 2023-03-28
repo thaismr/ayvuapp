@@ -15,6 +15,8 @@ class VocabularyAdmin(admin.ModelAdmin):
 
 @admin.register(PartOfSpeech)
 class PartOfSpeechAdmin(admin.ModelAdmin):
+    list_display = ('part_of_speech', 'language')
+    list_filter = ('language__code',)
     search_fields = ['part_of_speech', ]
 
 

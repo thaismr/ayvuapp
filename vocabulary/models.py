@@ -30,6 +30,7 @@ class PartOfSpeech(models.Model):
     )
 
     class Meta:
+        ordering = ['language', 'part_of_speech']
         verbose_name = _('part of speech')
         verbose_name_plural = _('part of speeches')
         unique_together = ['part_of_speech', 'language']
