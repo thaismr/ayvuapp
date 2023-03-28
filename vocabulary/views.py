@@ -7,7 +7,7 @@ from .models import Vocabulary
 
 class VocabularyCreateView(LoginRequiredMixin, CreateView):
     model = Vocabulary
-    fields = ['word', 'definition', 'public', 'language', 'level', 'synonyms']
+    fields = ['word', 'public', 'language', 'level', 'synonyms']
 
     def get_success_url(self):
         return reverse('vocabulary:detail', kwargs={'pk': self.object.pk})

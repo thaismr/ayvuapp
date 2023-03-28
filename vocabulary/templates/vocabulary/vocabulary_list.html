@@ -14,7 +14,7 @@
   <p>
     <a href="{% url 'vocabulary:detail' vocabulary.pk %}">{{ vocabulary.word }}</a>
     | {{ vocabulary.language }} | {{ vocabulary.get_level_display }}
-    <br /><em>{{ vocabulary.definition }}</em>
+    <br /><em>{{ vocabulary.word }}</em>
   </p>
   {% endfor %}
 
