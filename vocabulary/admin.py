@@ -22,7 +22,10 @@ class PartOfSpeechAdmin(admin.ModelAdmin):
 
 @admin.register(VocabularyDefinition)
 class VocabularyDefinitionAdmin(admin.ModelAdmin):
-    search_fields = ['definition', 'usage']
+    search_fields = ['vocabulary__word', 'part_of_speech__part_of_speech', 'definition', 'usage']
+    autocomplete_fields = ('part_of_speech', 'vocabulary',)
+    list_display = ('vocabulary', 'part_of_speech', 'definition', 'usage')
+    list_filter = ('part_of_speech__part_of_speech', 'vocabulary__language__code',)
 
 
 @admin.register(VocabularyExample)

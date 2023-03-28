@@ -36,7 +36,7 @@ class PartOfSpeech(models.Model):
         unique_together = ['part_of_speech', 'language']
 
     def __str__(self):
-        return self.part_of_speech
+        return f'{self.part_of_speech} ({self.language})'
 
 
 class Vocabulary(models.Model):
