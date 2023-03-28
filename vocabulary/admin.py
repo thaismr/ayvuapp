@@ -12,6 +12,12 @@ class VocabularyDefinitionInline(admin.StackedInline):
     show_change_link = True
     extra = 1
 
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related(
+            'part_of_speech__language',
+            'vocabulary',
+        )
+
 
 class VocabularyExampleInline(admin.StackedInline):
     model = VocabularyExample
@@ -30,6 +36,7 @@ class VocabularyAdmin(admin.ModelAdmin):
     search_fields = ['word', ]
     autocomplete_fields = ('synonyms', 'publisher')
     list_display = ('word', 'public', 'language', 'level', 'publisher')
+    list_select_related = ('language', 'publisher')
 
     inlines = [VocabularyDefinitionInline]
 
@@ -39,11 +46,6 @@ class PartOfSpeechAdmin(admin.ModelAdmin):
     list_display = ('part_of_speech', 'language')
     list_filter = ('language__code',)
     search_fields = ['part_of_speech', ]
-
-    def get_queryset(self, request):
-        return super().get_queryset(request).select_related(
-            'languages__language',
-        )
 
 
 @admin.register(VocabularyDefinition)
@@ -65,9 +67,14 @@ class VocabularyDefinitionAdmin(admin.ModelAdmin):
 class VocabularyExampleAdmin(admin.ModelAdmin):
     search_fields = ['example', 'definition__definition', 'definition__vocabulary__word']
     autocomplete_fields = ('definition',)
+    list_select_related = (
+        'definition__part_of_speech__language',
+        'definition__vocabulary__language'
+    )
 
     def get_queryset(self, request):
         return super().get_queryset(request).select_related(
-            'definition',
+            'definition__part_of_speech__language',
+            'definition__vocabulary__language'
         )
 
