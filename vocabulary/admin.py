@@ -7,10 +7,21 @@ from .models import (
 )
 
 
+class VocabularyDefinitionInline(admin.StackedInline):
+    model = VocabularyDefinition
+    extra = 1
+
+
+admin.register(VocabularyDefinition)
+
+
 @admin.register(Vocabulary)
 class VocabularyAdmin(admin.ModelAdmin):
     search_fields = ['word', ]
-    autocomplete_fields = ('synonyms',)
+    autocomplete_fields = ('synonyms', 'publisher')
+    list_display = ('word', 'public', 'language', 'level', 'publisher')
+
+    inlines = [VocabularyDefinitionInline]
 
 
 @admin.register(PartOfSpeech)
@@ -30,5 +41,6 @@ class VocabularyDefinitionAdmin(admin.ModelAdmin):
 
 @admin.register(VocabularyExample)
 class VocabularyExampleAdmin(admin.ModelAdmin):
-    search_fields = ['example', ]
+    search_fields = ['example', 'definition__definition', 'definition__vocabulary__word']
+    autocomplete_fields = ('definition',)
 

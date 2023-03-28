@@ -108,6 +108,14 @@ class VocabularyDefinition(models.Model):
     )
     history = HistoricalRecords()
 
+    class Meta:
+        ordering = ['part_of_speech', 'vocabulary']
+        verbose_name = _('vocabulary definition')
+        verbose_name_plural = _('vocabulary definitions')
+
+    def __str__(self):
+        return f'{self.vocabulary} - {self.part_of_speech}'
+
 
 class VocabularyExample(models.Model):
     """
@@ -120,3 +128,11 @@ class VocabularyExample(models.Model):
         related_name='examples',
         verbose_name=_('Definition')
     )
+
+    class Meta:
+        ordering = ['example', 'definition']
+        verbose_name = _('vocabulary example')
+        verbose_name_plural = _('vocabulary examples')
+
+    def __str__(self):
+        return f'{self.definition}: {self.example}'
