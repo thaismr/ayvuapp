@@ -135,4 +135,4 @@ class VocabularyExample(models.Model):
         verbose_name_plural = _('vocabulary examples')
 
     def __str__(self):
-        return f'{self.definition}: {self.example}'
+        return f'{self.definition}: {self.example[:50]}...'

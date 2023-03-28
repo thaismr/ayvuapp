@@ -9,10 +9,20 @@ from .models import (
 
 class VocabularyDefinitionInline(admin.StackedInline):
     model = VocabularyDefinition
+    show_change_link = True
     extra = 1
 
 
-admin.register(VocabularyDefinition)
+class VocabularyExampleInline(admin.StackedInline):
+    model = VocabularyExample
+    show_change_link = True
+    extra = 1
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related(
+            'definition__part_of_speech__language',
+            'definition__vocabulary'
+        )
 
 
 @admin.register(Vocabulary)
@@ -30,6 +40,11 @@ class PartOfSpeechAdmin(admin.ModelAdmin):
     list_filter = ('language__code',)
     search_fields = ['part_of_speech', ]
 
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related(
+            'languages__language',
+        )
+
 
 @admin.register(VocabularyDefinition)
 class VocabularyDefinitionAdmin(admin.ModelAdmin):
@@ -38,9 +53,21 @@ class VocabularyDefinitionAdmin(admin.ModelAdmin):
     list_display = ('vocabulary', 'part_of_speech', 'definition', 'usage')
     list_filter = ('part_of_speech__part_of_speech', 'vocabulary__language__code',)
 
+    inlines = [VocabularyExampleInline]
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related(
+            'part_of_speech__language', 'vocabulary'
+        )
+
 
 @admin.register(VocabularyExample)
 class VocabularyExampleAdmin(admin.ModelAdmin):
     search_fields = ['example', 'definition__definition', 'definition__vocabulary__word']
     autocomplete_fields = ('definition',)
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related(
+            'definition',
+        )
 
