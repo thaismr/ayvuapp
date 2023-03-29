@@ -1,7 +1,9 @@
 {% extends 'inner_pg_base.html' %}
 {% load static i18n %}
 
-{% block title %}Vocabulary List{% endblock %}
+{% block title %}
+{% translate "Vocabulary List" %}
+{% endblock %}
 
 {% block inner_content %}
 
@@ -14,7 +16,16 @@
   <p>
     <a href="{% url 'vocabulary:detail' vocabulary.pk %}">{{ vocabulary.word }}</a>
     | {{ vocabulary.language }} | {{ vocabulary.get_level_display }}
-    <br /><em>{{ vocabulary.word }}</em>
+    <br />
+
+      <ul>
+    {% for definition in vocabulary.definitions.all %}
+      <li><em>{{ definition.part_of_speech.part_of_speech }}:</em> {{ definition.definition }}</li>
+    {% empty %}
+      <em>{% translate "No definition found." %}</em>
+    {% endfor %}
+    </ul>
+
   </p>
   {% endfor %}
 
