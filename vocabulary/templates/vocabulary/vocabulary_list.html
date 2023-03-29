@@ -18,7 +18,7 @@
     | {{ vocabulary.language }} | {{ vocabulary.get_level_display }}
     <br />
 
-      <ul>
+    <ul>
     {% for definition in vocabulary.definitions.all %}
       <li><em>{{ definition.part_of_speech.part_of_speech }}:</em> {{ definition.definition }}</li>
     {% empty %}
