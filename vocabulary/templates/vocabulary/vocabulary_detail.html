@@ -1,7 +1,9 @@
 {% extends 'inner_pg_base.html' %}
 {% load static i18n %}
 
-{% block title %}Vocabulary Detail{% endblock %}
+{% block title %}
+{% translate "Vocabulary Detail" %}
+{% endblock %}
 
 {% block inner_content %}
 
@@ -11,14 +13,21 @@
 <div class="card-body p-4">
 
   <p>{{ vocabulary.language }} | {{ vocabulary.get_level_display }}</p>
-  <p>{% translate "Definition" %}: {{ vocabulary.word }}</p>
+
+  <ol>
+    {% for definition in vocabulary.definitions.all %}
+      <li><strong>{{ definition.part_of_speech.part_of_speech }}:</strong> {{ definition.definition }}</li>
+    {% empty %}
+      <em>{% translate "No definition found." %}</em>
+    {% endfor %}
+  </ol>
 
   <h5 class="mt-5">Synonyms</h5>
   <ul>
     {% for synonym in vocabulary.synonyms.all %}
     <li><a href="{% url 'vocabulary:detail' synonym.pk %}">{{ synonym }}</a></li>
     {% empty %}
-    <li>Nothing here, add more vocabulary!</li>
+    Nothing here, add more vocabulary!
     {% endfor %}
   </ul>
 
@@ -28,7 +37,7 @@
     {% for resource in vocabulary.resources.all %}
     <li><a href="{% url 'resource:detail' resource.pk %}">{{ resource }}</a></li>
     {% empty %}
-    <li>No resource here, add some!</li>
+    No resource here, add some!
     {% endfor %}
   </ul>
   <a href="{% url 'resource:create' %}" class="btn btn-primary">Add resource</a>

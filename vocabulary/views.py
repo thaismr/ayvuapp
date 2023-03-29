@@ -34,4 +34,5 @@ class VocabularyListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         """Verify user has access to vocabulary."""
         return super().get_queryset().select_related(
-            'publisher', 'language').prefetch_related('resources')
+            'publisher', 'language').prefetch_related(
+            'resources', 'definitions')
