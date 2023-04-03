@@ -14,17 +14,17 @@
 
   {% for vocabulary in object_list %}
   <p>
-    <a href="{% url 'vocabulary:detail' vocabulary.pk %}">{{ vocabulary.word }}</a>
+    <strong><a href="{% url 'vocabulary:detail' vocabulary.pk %}">{{ vocabulary.word }}</a></strong>
     | {{ vocabulary.language }} | {{ vocabulary.get_level_display }}
     <br />
 
-    <ul>
+    <ol>
     {% for definition in vocabulary.definitions.all %}
       <li><em>{{ definition.part_of_speech.part_of_speech }}:</em> {{ definition.definition }}</li>
     {% empty %}
       <em>{% translate "No definition found." %}</em>
     {% endfor %}
-    </ul>
+    </ol>
 
   </p>
   {% endfor %}
