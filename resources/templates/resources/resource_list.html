@@ -1,24 +1,27 @@
 {% extends 'inner_pg_base.html' %}
 {% load static i18n %}
 
-{% block title %}Resource List{% endblock %}
+{% block title %}
+{% translate "Resource List" %}
+{% endblock %}
 
 {% block inner_content %}
 
 <div class="card-header bg-light py-3">
-  <h4 class="mb-3">Resource List</h4>
+  <h4 class="mb-3">{% translate "Resource List" %}</h4>
 </div>
 <div class="card-body p-4">
 
   {% for resource in object_list %}
-  <p><a href="{% url 'resource:detail' resource.pk %}">{{ resource.title }}</a> | {{ resource.language }} | {{ resource.get_level_display }}
+  <p><strong><a href="{% url 'resource:detail' resource.pk %}">{{ resource.title }}</a></strong> | {{ resource.language }} | {{ resource.get_level_display }}
+  <br />{{ resource.description }}
     {% if resource.url %}
-    <br /><a href="{{ resource.url }}" target="_blank">{{ resource.url }}</a>
+    <br />
+    <a href="{{ resource.url }}" target="_blank">{{ resource.url }}</a>
     {% endif %}
   </p>
   {% empty %}
-  <p>No resource found. <a href="{% url 'resource:create' %}">Add the first resource!</a>
-  </p>
+  <p>{% translate "No resource found." %} <a href="{% url 'resource:create' %}">{% translate "Add the first resource!" %}</a></p>
   {% endfor %}
 
 </div>
