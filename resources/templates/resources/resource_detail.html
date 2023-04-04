@@ -1,7 +1,9 @@
 {% extends 'inner_pg_base.html' %}
 {% load static i18n %}
 
-{% block title %}Resource Detail{% endblock %}
+{% block title %}
+{% translate "Resource Detail" %}
+{% endblock %}
 
 {% block inner_content %}
 
@@ -10,22 +12,66 @@
 </div>
 <div class="card-body p-4">
 
-  <p>{% translate "Language" %}: {{ resource.language }} | {{ resource.get_level_display }}</p>
+  <p>{{ resource.language }} | {{ resource.get_level_display }}</p>
   <p>{{ resource.description }}</p>
   {% if resource.url %}
   <p>URL: <a href="{{ resource.url }}" target="_blank">{{ resource.url }}</a></p>
   {% endif %}
 
-</div><div class="card-footer p-4">
-  <h5>Vocabulary</h5>
-  <ul>
+</div>
+<div class="card-footer p-4">
+
+  <div class="d-flex align-items-center justify-content-between">
+    <h5>{% translate "Vocabulary" %}</h5>
+    <div class="btn-group" role="group" aria-label="{% translate 'Vocabulary list actions' %}">
+      <a href="{% url 'vocabulary:create' %}" class="btn btn-primary border">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+             class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
+          <path
+              d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0z"/>
+        </svg>
+        &nbsp; {% translate "Add vocabulary" %}
+      </a>
+      <a href="" class="btn btn-primary border">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmarks-fill"
+             viewBox="0 0 16 16">
+          <path
+              d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4z"/>
+          <path d="M4.268 1A2 2 0 0 1 6 0h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L13 13.768V2a1 1 0 0 0-1-1H4.268z"/>
+        </svg>
+        &nbsp; {% translate "Add all to deck" %}
+      </a>
+    </div>
+  </div>
+
+  <ul class="list-group list-group-flush mt-3">
     {% for vocabulary in resource.vocabulary.all %}
-    <li><a href="{% url 'vocabulary:detail' vocabulary.pk %}">{{ vocabulary }}</a></li>
+
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="me-auto">
+        <a class="vocabulary-link" href="{% url 'vocabulary:detail' vocabulary.pk %}">{{ vocabulary }}</a>
+        <!-- START Vocabulary definitions -->
+        <ol>
+          {% for definition in vocabulary.definitions.all %}
+          <li><em>{{ definition.part_of_speech.part_of_speech }}:</em> {{ definition.definition }}</li>
+          {% empty %}
+          <em>{% translate "No definition found." %}</em>
+          {% endfor %}
+        </ol>
+        <!-- END Vocabulary definitions -->
+      </div>
+      <a href="" class="btn btn-primary btn-sm mt-auto mb-auto" aria-label="{% translate 'Add to deck' %}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+             class="bi bi-bookmark-plus-fill" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+                d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm6.5-11a.5.5 0 0 0-1 0V6H6a.5.5 0 0 0 0 1h1.5v1.5a.5.5 0 0 0 1 0V7H10a.5.5 0 0 0 0-1H8.5V4.5z"/>
+        </svg>
+      </a>
+    </li>
     {% empty %}
-    <li>No vocabulary here, add some!</li>
+    <li class="list-group-item">{% translate "No vocabulary here, add some!" %}</li>
     {% endfor %}
   </ul>
-  <a href="{% url 'vocabulary:create' %}" class="btn btn-primary">Add vocabulary</a>
 
 </div>
 
