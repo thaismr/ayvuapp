@@ -76,6 +76,11 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 35px;
 }
 
+.btn-sm {
+    line-height: 30px;
+    padding: 0.25rem 0.8rem;
+}
+
 .btn-primary {
     background-color: #23d2e2;
     box-shadow: 4px 7px 12px 0 rgb(35 210 226 / 20%);
@@ -96,4 +101,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-secondary:hover {
     background-color: #5753e4;
+}
+
+
+.vocabulary-link {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.vocabulary-link:hover {
+  text-decoration: underline;
 }
