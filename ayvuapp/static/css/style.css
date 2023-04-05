@@ -112,3 +112,8 @@ h1, h2, h3, h4, h5, h6 {
 .vocabulary-link:hover {
   text-decoration: underline;
 }
+
+
+.grid-md-layout {
+  grid-template-columns: 1fr 3fr;
+}
