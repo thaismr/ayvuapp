@@ -8,13 +8,13 @@
 {% block inner_content %}
 
 <div class="card-header bg-light py-3">
-  <h4 class="mb-3">{% translate "Vocabulary List" %}</h4>
+  <h4 class="mb-2 mb-md-3">{% translate "Vocabulary List" %}</h4>
 </div>
-<div class="card-body p-4">
+<div class="card-body px-3 py-4">
 
   {% for vocabulary in object_list %}
   <p>
-    <strong><a href="{% url 'vocabulary:detail' vocabulary.pk %}">{{ vocabulary.word }}</a></strong>
+    <strong><a class="vocabulary-link" href="{% url 'vocabulary:detail' vocabulary.pk %}">{{ vocabulary.word }}</a></strong>
     | {{ vocabulary.language }} | {{ vocabulary.get_level_display }}
     <br />
 
