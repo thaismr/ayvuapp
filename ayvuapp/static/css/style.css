@@ -104,12 +104,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-.vocabulary-link {
+.vocabulary-link, .resource-link {
   font-weight: 700;
   text-decoration: none;
 }
 
-.vocabulary-link:hover {
+.vocabulary-link:hover, .resource-link:hover {
   text-decoration: underline;
 }
 
