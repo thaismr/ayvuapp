@@ -43,15 +43,15 @@
 
   <ul class="list-group list-group-flush mt-3">
     {% for resource in vocabulary.resources.all %}
-    <li class="list-group-item d-flex justify-content-between align-items-start">
+    <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-start px-0">
       <div class="me-auto">
-        <a class="resource-link" href="{% url 'resource:detail' resource.pk %}">{{ resource }}</a>
+        <a href="{% url 'resource:detail' resource.pk %}" class="resource-link">{{ resource }}</a>
         <br/>{{ resource.description }}
       </div>
     </li>
     {% empty %}
-    <li class="list-group-item d-flex justify-content-between align-items-start">
-      No resource here, add some!
+    <li class="list-group-item list-group-item-secondary px-0">
+      {% translate "No resource here, add some!" %}
     </li>
     {% endfor %}
   </ul>

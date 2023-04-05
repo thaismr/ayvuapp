@@ -104,6 +104,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+.list-group-item-secondary {
+    background-color: #f7f7f7;
+}
+
+.list-group-item-secondary:hover {
+    background-color: #f7f7f7;
+}}
+
+
 .vocabulary-link, .resource-link {
   font-weight: 700;
   text-decoration: none;
